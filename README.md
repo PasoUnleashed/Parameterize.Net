@@ -6,15 +6,15 @@
 
 A small library to represent and generate arbitrarily complex objects using a flat `float[]`-useful for procedural generation, genetic algorithms, parameter optimization, and compact serialization of parameter spaces.
 
-> Parameterize.Net lets you define the *shape* of an object declaratively (attributes or fluent builder), derive a `Resolver` that maps between a `float[]` (a “gene”) and concrete instances, and query ranges and mutation-friendly values for use in genetic/optimization workflows. ([GitHub][1])
+> Parameterize.Net lets you define the *shape* of an object declaratively (attributes or fluent builder), derive a `Resolver` that maps between a `float[]` (a “gene”) and concrete instances, and query ranges and mutation-friendly values for use in genetic/optimization workflows. 
 
 ---
 
 ## Status & Compatibility
 
-* Current package: **Parameterize.Net 2.0.0**. Targets **.NET Standard 2.1** (compatible with .NET 5/6/7/8/9/10 and a variety of platforms). ([NuGet][2])
-* Language: **C#**. Repository contains source and examples. ([GitHub][1])
-* License: **MIT**. ([GitHub][1])
+* Current package: **Parameterize.Net 2.0.0**. Targets **.NET Standard 2.1** (compatible with .NET 5/6/7/8/9/10 and a variety of platforms).
+* Language: **C#**. Repository contains source and examples.
+* License: **MIT**.
 
 ---
 
@@ -26,7 +26,7 @@ A small library to represent and generate arbitrarily complex objects using a fl
 * **Declarative model (attributes)** - annotate your classes with `[Parameterize]`, `[Range(min,max)]`, `[Length(min,max)]`, `[Subtype(typeof(...))]`, `[Resolver(typeof(...))]` and the library will derive a `Resolver` for your type.
 * **Programmatic model (ResolverBuilder)** - build resolvers explicitly in code for maximum control (good for generated code, editor tooling, or when you prefer fluent definitions).
 
-(These concepts and examples are implemented and demonstrated in the repository README and examples.) ([GitHub][1])
+(These concepts and examples are implemented and demonstrated in the repository README and examples.)
 
 ---
 
@@ -38,7 +38,7 @@ A small library to represent and generate arbitrarily complex objects using a fl
 dotnet add package Parameterize.Net --version 2.0.0
 ```
 
-Package targets `.NET Standard 2.1` - see NuGet for details about supported platform compatibility. ([NuGet][2])
+Package targets `.NET Standard 2.1` - see NuGet for details about supported platform compatibility. 
 
 ### Unity
 
@@ -48,7 +48,7 @@ Use Unity Package Manager → **Add package from git URL** and paste:
 https://github.com/PasoUnleashed/Parameterize.Net.git?path=/Parameterize.Net/Parameterize.Net/Source#main
 ```
 
-(This points the Unity package manager to the package path inside the repo.) ([GitHub][1])
+(This points the Unity package manager to the package path inside the repo.) 
 
 ---
 
@@ -104,7 +104,7 @@ var zoo = resolver.Resolve<Zoo>(gene);     // create an instance from gene
 Console.WriteLine(zoo);
 ```
 
-This yields a `Zoo` instance with randomized animals according to the constraints. ([GitHub][1])
+This yields a `Zoo` instance with randomized animals according to the constraints.
 
 ---
 
@@ -242,7 +242,7 @@ If you want, I can **also create a side-by-side comparison of attribute-based vs
   * `[Subtype(typeof(...))]` - polymorphic choices for arrays/lists of base types
   * `[Resolver(typeof(YourResolver))]` - attach a custom resolver to a field/property
 
-(Examples and attribute usage are shown in the repository README.) ([GitHub][1])
+(Examples and attribute usage are shown in the repository README.) 
 
 ---
 
@@ -276,13 +276,13 @@ This design aims for a deterministic mapping: the same gene should resolve to th
 
 ## Dependencies
 
-* The NuGet package lists `Newtonsoft.Json` (>= 13.0.3) in its package dependencies. Check the package metadata for exact versions. ([NuGet][2])
+* The NuGet package lists `Newtonsoft.Json` (>= 13.0.3) in its package dependencies. Check the package metadata for exact versions. 
 
 ---
 
 ## Examples & snippets
 
-* The repository README includes a compact demo (the `Zoo` example) which demonstrates both attribute-based and fluent-builder approaches. Use the examples as a starting point to integrate Parameterize.Net into your project. ([GitHub][1])
+* The repository README includes a compact demo (the `Zoo` example) which demonstrates both attribute-based and fluent-builder approaches. Use the examples as a starting point to integrate Parameterize.Net into your project.
 
 ---
 
@@ -297,23 +297,23 @@ This design aims for a deterministic mapping: the same gene should resolve to th
 ## FAQ
 
 **Q: Is Parameterize.Net a serializer?**
-A: Not exactly. It's a parameterization layer that maps between compact float gene vectors and instances. While you can use it to serialize parameter space, its main use is generation and optimization workflows (procedural content, GA-like systems). ([GitHub][1])
+A: Not exactly. It's a parameterization layer that maps between compact float gene vectors and instances. While you can use it to serialize parameter space, its main use is generation and optimization workflows (procedural content, GA-like systems). 
 
 **Q: Can I persist genes to disk?**
 A: Yes - genes are just arrays of floats. Persist the array (binary or text) and re-load to `Resolve<T>` the same object.
 
 **Q: Does it work in Unity?**
-A: Yes - the repo includes Unity-compatible packaging instructions (use Unity Package Manager with the git URL path). ([GitHub][1])
+A: Yes - the repo includes Unity-compatible packaging instructions (use Unity Package Manager with the git URL path).
 
 ---
 
 ## License
 
-MIT. See `LICENSE` in the repository. ([GitHub][1])
+MIT. See `LICENSE` in the repository.
 
 ---
 
 ## Contact & resources
 
-* Source repository: PasoUnleashed / Parameterize.Net (see repo for code & examples). ([GitHub][1])
-* NuGet package & versioning: Parameterize.Net on NuGet (current version & supported TFMs). ([NuGet][2])
+* Source repository: PasoUnleashed / Parameterize.Net (see repo for code & examples).
+* NuGet package & versioning: Parameterize.Net on NuGet (current version & supported TFMs).
