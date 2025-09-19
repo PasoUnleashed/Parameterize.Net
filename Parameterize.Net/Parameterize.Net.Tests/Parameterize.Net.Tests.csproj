@@ -21,4 +21,8 @@
         <Using Include="NUnit.Framework"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Parameterize.Net\Parameterize.Net.csproj" />
+    </ItemGroup>
+
 </Project>
