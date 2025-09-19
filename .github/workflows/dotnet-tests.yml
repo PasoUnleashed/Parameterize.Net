@@ -1,7 +1,4 @@
 name: .NET Tests
-defaults:
-  run:
-    working-directory: Parmaeterize.Net/
 on:
   push:
     branches: [ main ]
