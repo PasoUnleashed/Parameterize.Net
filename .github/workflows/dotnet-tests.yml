@@ -19,7 +19,7 @@ jobs:
         dotnet-version: 8.0.x  # or the version your project targets
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./Parameterize.Net
 
     - name: Build
       run: dotnet build ./Parameterize.Net --no-restore --configuration Release
