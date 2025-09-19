@@ -28,7 +28,7 @@ jobs:
       run: dotnet pack ./Parameterize.Net/Parameterize.Net.csproj --configuration Release --no-build -o ./nupkg
 
     - name: Push to NuGet
-      uses: nuget/setup-nuget@v3
+      uses: nuget/setup-nuget@v2
 
     - name: Publish package
       run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
