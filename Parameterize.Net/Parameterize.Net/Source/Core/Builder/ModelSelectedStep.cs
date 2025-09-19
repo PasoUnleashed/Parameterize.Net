@@ -1,7 +1,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace Parameterize2.Net.Builder
+namespace Parameterize.Net.Builder
 {
     public class ModelSelectedStep<T>
     {

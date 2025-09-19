@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Parameterize2.Net
+namespace Parameterize.Net
 {
     /// <summary>
     /// The property to index mapping of a data structur

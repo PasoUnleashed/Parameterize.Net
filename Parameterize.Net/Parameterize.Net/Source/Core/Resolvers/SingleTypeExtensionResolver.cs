@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Parameterize2.Net
+namespace Parameterize.Net
 {
     internal class SingleTypeExtensionResolver : Resolver, ISubResolverHolder
     {

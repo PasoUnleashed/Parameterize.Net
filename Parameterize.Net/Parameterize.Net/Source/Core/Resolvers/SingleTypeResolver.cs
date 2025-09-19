@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Parameterize2.Net
+namespace Parameterize.Net
 {
     /// <summary>
     /// The genotype of a data strucuture

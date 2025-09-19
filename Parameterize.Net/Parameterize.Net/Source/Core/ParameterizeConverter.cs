@@ -5,7 +5,7 @@ using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Parameterize2.Net
+namespace Parameterize.Net
 {
     public class ParameterizeConverter : JsonConverter
     {

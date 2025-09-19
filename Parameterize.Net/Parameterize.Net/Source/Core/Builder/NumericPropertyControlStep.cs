@@ -1,6 +1,6 @@
 using System;
 
-namespace Parameterize2.Net.Builder
+namespace Parameterize.Net.Builder
 {
     public class NumericPropertyControlStep<T, TPropType> : ModelSelectedStep<T>
     {

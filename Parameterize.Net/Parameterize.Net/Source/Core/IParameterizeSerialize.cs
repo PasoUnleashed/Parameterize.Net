@@ -1,4 +1,4 @@
-﻿namespace Parameterize2.Net
+﻿namespace Parameterize.Net
 {
     public interface IParameterizeSerialize
     {

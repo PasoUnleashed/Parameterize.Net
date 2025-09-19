@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Parameterize2.Net
+namespace Parameterize.Net
 {
     public enum Charset
     {

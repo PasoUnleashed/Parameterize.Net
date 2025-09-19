@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parameterize.Net", "Paramet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parameterize.Net.Sample", "Parameterize.Net.Sample\Parameterize.Net.Sample.csproj", "{C76AA4BE-F55F-4C85-90D8-359D317F2A2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Parameterize.Net.Tests", "Parameterize.Net.Tests\Parameterize.Net.Tests.csproj", "{B39D0BF2-AACD-4DE0-B87D-EA47D831B91D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C76AA4BE-F55F-4C85-90D8-359D317F2A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C76AA4BE-F55F-4C85-90D8-359D317F2A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C76AA4BE-F55F-4C85-90D8-359D317F2A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B39D0BF2-AACD-4DE0-B87D-EA47D831B91D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B39D0BF2-AACD-4DE0-B87D-EA47D831B91D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B39D0BF2-AACD-4DE0-B87D-EA47D831B91D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B39D0BF2-AACD-4DE0-B87D-EA47D831B91D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

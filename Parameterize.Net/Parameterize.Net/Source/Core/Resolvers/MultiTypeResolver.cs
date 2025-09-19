@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace Parameterize2.Net
+namespace Parameterize.Net
 {
     public class MultiTypeResolverEntry
     {

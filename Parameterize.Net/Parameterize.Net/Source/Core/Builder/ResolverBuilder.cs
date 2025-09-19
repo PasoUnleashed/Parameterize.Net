@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.XPath;
 
-namespace Parameterize2.Net.Builder
+namespace Parameterize.Net.Builder
 {
     public static class ResolverBuilder
     {

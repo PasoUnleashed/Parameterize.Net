@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Parameterize2.Net
+namespace Parameterize.Net
 {
     internal class FieldAccessor : Accessor
     {

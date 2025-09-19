@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Parameterize2.Net
+namespace Parameterize.Net
 {
     /// <summary>
     /// Basic numberic data type resolver (float, int, bool, char, etc...)

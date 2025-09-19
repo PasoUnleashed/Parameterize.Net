@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Parameterize2.Net.Builder;
+using Parameterize.Net.Builder;
 
-namespace Parameterize2.Net.Reflection
+namespace Parameterize.Net.Reflection
 {
     public class ResolverDeriver
     {

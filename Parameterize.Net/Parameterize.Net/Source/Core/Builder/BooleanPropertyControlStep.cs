@@ -1,4 +1,4 @@
-namespace Parameterize2.Net.Builder
+namespace Parameterize.Net.Builder
 {
     public class BooleanPropertyControlStep<T> : ModelSelectedStep<T>
     {

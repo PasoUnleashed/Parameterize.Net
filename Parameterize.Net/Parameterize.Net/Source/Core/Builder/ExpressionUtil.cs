@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Parameterize2.Net.Builder
+namespace Parameterize.Net.Builder
 {
     internal class ExpressionUtil
     {

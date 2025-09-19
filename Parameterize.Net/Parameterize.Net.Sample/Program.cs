@@ -1,9 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using Parameterize2.Net;
-using Parameterize2.Net.Builder;
-using Parameterize2.Net.Reflection;
-using Range = Parameterize2.Net.Range;
+using Parameterize.Net;
+using Parameterize.Net.Builder;
+using Parameterize.Net.Reflection;
+using Range = Parameterize.Net.Range;
 
 internal class Program
 {

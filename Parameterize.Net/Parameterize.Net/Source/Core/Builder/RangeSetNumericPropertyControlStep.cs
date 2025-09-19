@@ -1,4 +1,4 @@
-namespace Parameterize2.Net.Builder
+namespace Parameterize.Net.Builder
 {
     public class RangeSetNumericPropertyControlStep<T, TPropType> : ModelSelectedStep<T>
     {
