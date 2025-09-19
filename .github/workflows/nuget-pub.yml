@@ -4,9 +4,7 @@ on:
   push:
     tags:
       - 'v*'   # triggers on tags like v1.0.0
-defaults:
-  run:
-    working-directory: Parmaeterize.Net/
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -24,7 +22,7 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build ./Parameterize.Net --configuration Release --no-restore
 
     - name: Pack
       run: dotnet pack ./Parameterize.Net/Parameterize.Net.csproj --configuration Release --no-build -o ./nupkg

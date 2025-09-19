@@ -25,10 +25,10 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build ./Parameterize.Net --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test ./Parameterize.Net --no-build --verbosity normal
 
     - name: Upload test results
       uses: actions/upload-artifact@v4
