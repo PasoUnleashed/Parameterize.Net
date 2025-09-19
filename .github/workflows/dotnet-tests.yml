@@ -25,7 +25,7 @@ jobs:
       run: dotnet build ./Parameterize.Net --no-restore --configuration Release
 
     - name: Run tests
-      run: dotnet test ./Parameterize.Net --no-build --verbosity normal
+      run: dotnet test ./Parameterize.Net --verbosity normal
 
     - name: Upload test results
       uses: actions/upload-artifact@v4
