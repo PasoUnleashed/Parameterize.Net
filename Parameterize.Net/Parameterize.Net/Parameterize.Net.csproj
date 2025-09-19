@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>2.0.0</Version>
+        <Version>2.1.0</Version>
         <Title>Parameterize.Net</Title>
         <PackageProjectUrl>https://www.nuget.org/packages/Parameterize.Net</PackageProjectUrl>
         <RepositoryUrl>https://github.com/PasoUnleashed/Parameterize.Net</RepositoryUrl>

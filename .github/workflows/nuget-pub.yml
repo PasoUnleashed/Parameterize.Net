@@ -3,7 +3,7 @@ name: Publish NuGet Package
 on:
   push:
     tags:
-      - 'v*'   # triggers on tags like v1.0.0
+      - '*.*.*'   # triggers on tags like 1.0.0
 
 jobs:
   publish:
