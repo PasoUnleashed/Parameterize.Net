@@ -25,7 +25,7 @@ jobs:
       run: dotnet build ./Parameterize.Net --configuration Release --no-restore
 
     - name: Pack
-      run: dotnet pack ./Parameterize.Net/Parameterize.Net.csproj --configuration Release --no-build -o ./nupkg
+      run: dotnet pack ./Parameterize.Net/Parameterize.Net/Parameterize.Net.csproj --configuration Release --no-build -o ./nupkg
 
     - name: Push to NuGet
       uses: nuget/setup-nuget@v2 
