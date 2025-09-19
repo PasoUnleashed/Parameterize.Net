@@ -1,6 +1,7 @@
 name: .NET Tests
 defaults:
-  working-directory: ./Parameterize.Net
+  run:
+    working-directory: ./my-project-root
 on:
   push:
     branches: [ main ]

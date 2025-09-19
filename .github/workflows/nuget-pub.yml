@@ -5,7 +5,8 @@ on:
     tags:
       - 'v*'   # triggers on tags like v1.0.0
 defaults:
-  working-directory: ./my-project-root
+  run:
+    working-directory: ./my-project-root
 jobs:
   publish:
     runs-on: ubuntu-latest
