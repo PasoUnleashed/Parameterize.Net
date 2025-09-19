@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Parameterize2.Net;
+using Parameterize2.Net.Builder;
 using Parameterize2.Net.Reflection;
 using Range = Parameterize2.Net.Range;
 
@@ -12,15 +13,25 @@ internal class Program
         var gene = resolver.GetRange().GetRandom();
         var zoo = resolver.Resolve<Zoo>(gene);
         Console.WriteLine(zoo.ToString());
+
+
+        var animalNameResolver = new AnimalNameResolver();
+        var resolver2 = ResolverBuilder.Model<Zoo>().Property(i => i.Animals,
+                ResolverBuilder.Many<Animal>()
+                    .ForType<Cat>(ResolverBuilder.Model<Cat>().Property(i => i.Lives).WithRange(1, 9).SetResolver(i=>i.Name, animalNameResolver).Get())
+                    .ForType<Dog>(ResolverBuilder.Model<Dog>().Property(i => i.Spots).WithRange(1, 9).SetResolver(i=>i.Name, animalNameResolver).Get())
+                    .Get(), 1,
+                10)
+            .Get();
+        gene = resolver2.GetRange().GetRandom();
+        zoo = resolver2.Resolve<Zoo>(gene);
+        Console.WriteLine(zoo.ToString());
     }
 }
 
 public class Zoo
 {
-    [Parameterize]
-    [Length(1,10)]
-    [Subtype(typeof(Dog))]
-    [Subtype(typeof(Cat))]
+    [Parameterize] [Length(1, 10)] [Subtype(typeof(Dog))] [Subtype(typeof(Cat))]
     public Animal[] Animals;
 
     public override string ToString()
@@ -32,6 +43,7 @@ public class Zoo
 public abstract class Animal
 {
     [Resolver(typeof(AnimalNameResolver))] public string Name;
+
     public override string ToString()
     {
         return $"{this.GetType().Name} Called {this.Name}";
@@ -40,8 +52,8 @@ public abstract class Animal
 
 public class Dog : Animal
 {
-    [Parameterize]
-    [Range(1, 9)] public int Spots;
+    [Parameterize] [Range(1, 9)] public int Spots;
+
     public override string ToString()
     {
         return base.ToString() + $" (Spots {Spots})";
@@ -50,8 +62,8 @@ public class Dog : Animal
 
 public class Cat : Animal
 {
-    [Parameterize]
-    [Range(1, 9)] public int Lives;
+    [Parameterize] [Range(1, 9)] public int Lives;
+
     public override string ToString()
     {
         return base.ToString() + $" (Lives {Lives})";

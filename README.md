@@ -2,102 +2,112 @@
 Parameterize.Net is a library that allows developers to represent complex objects using float arrays.
 
 
-# Todo
-* Documentation and code comments
-* Allow for float array "parameters".
-* More flexible constraint definition
-* Implementing multitasking where possible.
 # Installation
 
 [![Nuget](https://img.shields.io/nuget/v/Parameterize.Net)](https://www.nuget.org/packages/Parameterize.Net/)
 
 
 # Usage
+This is the declaritive approach of defining your structure
 ```c#
-[Parameterized]
-class PetStore
-{
-    string name;
-    // 2 to 10 animals
-    [Parameter(2, 10)]
-    public List<Animal> Animals { get; set; }
-    [OnInitFunction] // will be called if this is the root object (the main type being created) 
-    public void OnInit(string name)
-    {
-        this.name = name;
-        Console.WriteLine($"Name = {name}");
-    }
-}
-[Parameterized]
-abstract class Animal
-{
-    //weight is 5 to 45 with 1 decimal point
-    [Parameter(5, 45, 1)]
 
-    public float Weight { get; set; }
-    public override string ToString()
-    {
-        return $"Animal weighing {Weight} Kg ";
-    }
-}
-[Parameterized]
-class Dog : Animal
+public class Zoo
 {
-    //1 to 10 spots (int)
-    [Parameter(1, 10)]
-    public int Spots { get; set; }
-    [OnInitFunction] // will be called whenever the library creates this type of object
-    public void DogInit()
-    {
-        //pet
-    }
+    [Parameterize]
+    [Length(1,10)]
+    [Subtype(typeof(Dog))]
+    [Subtype(typeof(Cat))]
+    public Animal[] Animals;
 
     public override string ToString()
     {
-        return base.ToString() + $"Dog with {Spots} spots ";
+        return $"Zoo with {Animals.Length} animals:\n\t {string.Join("\n\t", Animals.ToList())}";
     }
 }
-[Parameterized]
-class Cat : Animal
+
+public abstract class Animal
 {
-    // 6 to 9 lives
-    [Parameter(6, 9)]
-    public int Lives { get; set; }
+    [Resolver(typeof(AnimalNameResolver))] public string Name;
     public override string ToString()
     {
-        return base.ToString() + $"Cat with {Lives} lives ";
+        return $"{this.GetType().Name} Called {this.Name}";
     }
 }
 
-
-class Program
+public class Dog : Animal
 {
-    static void Main(string[] args)
+    [Parameterize]
+    [Range(1, 9)] public int Spots;
+    public override string ToString()
     {
-        // Config allow changing constraints in real time
-        dynamic config = Parameterizer.GetConfigFor(typeof(PetStore));
-        // Change how many objects in a parameterized object collection
-        config.Animals.CountConstraint = new Constraint(1,2);
-        // Change the constraint for an object parameter
-        config.Animals.Lives = new Constraint(1,5);
-
-        // Get the constraints for the float array.
-        Constraint[] constraints = Parameterizer.GetConstraints<PetStore>(config);
-
-        while (true)
-        {
-            // Generate random float array according to the constraints
-
-            float[] parameters = Constraint.GetRandom(constraints);
-            // Create the object from the parameters                        
-            var petstore = Parameterizer.Create<PetStore>(parameters,config,"My PetStore Name"); //The string argument at the end will go to an OnInitFunction in the type PetStore.
-
-            foreach (var animal in petstore.Animals)
-            {
-                Console.WriteLine(animal);
-            }
-            Console.ReadLine();
-        }
+        return base.ToString() + $" (Spots {Spots})";
     }
 }
+
+public class Cat : Animal
+{
+    [Parameterize]
+    [Range(1, 9)] public int Lives;
+    public override string ToString()
+    {
+        return base.ToString() + $" (Lives {Lives})";
+    }
+}
+
+public class AnimalNameResolver : Resolver
+{
+    private List<string> names = new List<string>()
+    {
+        "Max", "Buddy", "Charlie", "Rocky", "Jack", "Duke", "Toby", "Jake", "Lucky", "Cooper",
+        "Bear", "Teddy", "Rex", "Zeus", "Oscar", "Milo", "Simba", "Tiger", "Sammy", "Oliver",
+        "Leo", "Louis", "Finn", "Loki", "Murphy", "Marley", "Bentley", "Bruno", "Diesel", "Rusty",
+        "Bailey", "Maggie", "Bella", "Lucy", "Luna", "Daisy", "Chloe", "Lily", "Sophie", "Sadie",
+        "Coco", "Molly", "Stella", "Nala", "Gracie", "Zoe", "Mia", "Rosie", "Ellie", "Ruby",
+        "Kitty", "Cleo", "Princess", "Angel", "Mittens", "Oreo", "Smokey", "Shadow", "Boots", "Whiskers",
+        "Peanut", "Pumpkin", "Pepper", "Cookie", "Mocha", "Brownie", "Snickers", "Marshmallow", "Cupcake", "Sugar",
+        "Snowball", "Fluffy", "Fuzzy", "Patches", "Spot", "Dotty", "Stripe", "Midnight", "Stormy", "Ash",
+        "Sunny", "Lucky", "Honey", "Biscuit", "Muffin", "Tinkerbell", "Pixie", "Ginger", "Socks", "Bandit"
+    };
+
+    public override int Length => 1;
+
+    public override object Resolve(Type type, Span<float> value)
+    {
+        return names[(int)(names.Count * value[0]) % names.Count];
+    }
+
+    public override void GetRange(Span<Range> rangeSpan)
+    {
+        rangeSpan[0] = new Range(0, 1);
+    }
+
+    public override void Get(Span<float> range, object representative)
+    {
+        range[0] = names.IndexOf(representative.ToString()) / (float)names.Count;
+    }
+}
+```
+## Getting the resolver and creating an instance
+```c#
+Resolver resolver = ResolverDeriver.Derive<Zoo>();
+var gene = resolver.GetRange().GetRandom();
+var zoo = resolver.Resolve<Zoo>(gene);
+Console.WriteLine(zoo.ToString());
+```
+# Explicit Resolver Building
+for the above class structure we can also explicitly build a resolver
+
+```c#
+var animalNameResolver = new AnimalNameResolver();
+        var resolver2 = ResolverBuilder.Model<Zoo>().Property(i => i.Animals,
+                ResolverBuilder.Many<Animal>()
+                    .ForType<Cat>(ResolverBuilder.Model<Cat>().Property(i => i.Lives).WithRange(1, 9).SetResolver(i=>i.Name, animalNameResolver).Get())
+                    .ForType<Dog>(ResolverBuilder.Model<Dog>().Property(i => i.Spots).WithRange(1, 9).SetResolver(i=>i.Name, animalNameResolver).Get())
+                    .Get(), 1,
+                10)
+            .Get();
+        gene = resolver2.GetRange().GetRandom();
+        zoo = resolver2.Resolve<Zoo>(gene);
+        Console.WriteLine(zoo.ToString());
+
 ```
