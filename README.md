@@ -1,6 +1,9 @@
 
 # Parameterize.Net
 
+[![Nuget](https://img.shields.io/nuget/v/Parameterize.Net)](https://www.nuget.org/packages/Parameterize.Net/)
+[![.NET Tests](https://github.com/PasoUnleashed/Parameterize.Net/actions/workflows/dotnet-tests.yml/badge.svg)](https://github.com/PasoUnleashed/Parameterize.Net/actions/workflows/dotnet-tests.yml)
+
 A small library to represent and generate arbitrarily complex objects using a flat `float[]`-useful for procedural generation, genetic algorithms, parameter optimization, and compact serialization of parameter spaces.
 
 > Parameterize.Net lets you define the *shape* of an object declaratively (attributes or fluent builder), derive a `Resolver` that maps between a `float[]` (a “gene”) and concrete instances, and query ranges and mutation-friendly values for use in genetic/optimization workflows. ([GitHub][1])

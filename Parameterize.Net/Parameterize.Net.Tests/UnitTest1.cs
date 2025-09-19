@@ -10,25 +10,41 @@ public class Tests
     [Test]
     public void NumericResolverIntTest()
     {
-       
+        
     }
 
+    [Test]
     public void NumericResolverFloatTest()
     {
         
     }
 
+    [Test]
     public void BoolResolverTest()
     {
         
     }
 
-    public void SingleTypeResovlerTest()
+    [Test]
+    public void SingleTypeResolverTest()
     {
         
     }
 
+    [Test]
     public void MultiTypeResolverTest()
+    {
+        
+    }
+
+    [Test]
+    public void RangeLerpTest()
+    {
+        
+    }
+
+    [Test]
+    public void RangeReverseLerpTest()
     {
         
     }
