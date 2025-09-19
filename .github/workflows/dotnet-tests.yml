@@ -27,9 +27,9 @@ jobs:
 
     - name: Run tests
       run: dotnet test --no-build --verbosity normal
-      
-    - name: Publish test results
-      uses: actions/upload-artifact@v3
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
       with:
         name: test-results
-        path: '**/TestResults/*.xml'
+        path: '**/TestResults/*.trx'
