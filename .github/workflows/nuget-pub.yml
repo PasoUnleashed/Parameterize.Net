@@ -6,7 +6,7 @@ on:
       - 'v*'   # triggers on tags like v1.0.0
 defaults:
   run:
-    working-directory: ./my-project-root
+    working-directory: ./Parmaeterize.Net
 jobs:
   publish:
     runs-on: ubuntu-latest
