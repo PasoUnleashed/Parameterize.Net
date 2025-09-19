@@ -1,11 +1,11 @@
 name: Publish NuGet Package
-defaults:
-  working-directory: ./my-project-root
+
 on:
   push:
     tags:
       - 'v*'   # triggers on tags like v1.0.0
-
+defaults:
+  working-directory: ./my-project-root
 jobs:
   publish:
     runs-on: ubuntu-latest
