@@ -1,0 +1,35 @@
+name: Publish NuGet Package
+defaults:
+  working-directory: ./my-project-root
+on:
+  push:
+    tags:
+      - 'v*'   # triggers on tags like v1.0.0
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x  # adjust to your target .NET version
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Pack
+      run: dotnet pack ./Parameterize.Net/Parameterize.Net.csproj --configuration Release --no-build -o ./nupkg
+
+    - name: Push to NuGet
+      uses: nuget/setup-nuget@v3
+
+    - name: Publish package
+      run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
